@@ -6,24 +6,12 @@ class Technology(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
     description = models.TextField(blank=False, null=False, default='---')
     image = models.ImageField(upload_to='images/tech_images/')
-    mini_image = models.ImageField(upload_to='images/tech_images/')
+    mini_image = models.ImageField(upload_to='images/tech_images/mini/')
 
 
 class Currency(models.Model):
     complete_name = models.CharField(max_length=3, blank=False, null=False, default='USD')
     short_name = models.CharField(max_length=2, blank=False, null=False, default='$')
-
-
-class PaymentType(models.Model):
-    payment_type = models.CharField(max_length=10, blank=False, null=False)
-
-
-class PaymentTypeInOrder(models.Model):
-    payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE)
-    order = models.ForeignKey('Order', on_delete=models.CASCADE)
-    currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
-    min_payment = models.IntegerField(blank=False, null=False, default=0)
-    max_payment = models.IntegerField(blank=False, null=False, default=0)
 
 
 class Order(models.Model):
@@ -34,4 +22,17 @@ class Order(models.Model):
     required_technologies = models.ManyToManyField(Technology)
     bids_count = models.IntegerField(blank=False, null=False, default=0)
     average_bid = models.IntegerField(blank=False, null=False, default=0)
+    payment_type = models.CharField(max_length=10, blank=False, null=False)
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
+    min_payment = models.IntegerField(blank=False, null=False, default=0)
+    max_payment = models.IntegerField(blank=False, null=False, default=0)
+    created = models.DateTimeField()
 
+
+def get_project_file_path(instance, filename):
+    return 'order_{0}/{1}'.format(instance.order.id, filename)
+
+
+class OrderAdditionalDocument(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    file = models.FileField(upload_to=get_project_file_path)
