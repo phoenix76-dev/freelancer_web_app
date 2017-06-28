@@ -14,6 +14,10 @@ class Currency(models.Model):
     short_name = models.CharField(max_length=2, blank=False, null=False, default='$')
 
 
+class SalaryMethod(models.Model):
+    method = models.CharField(max_length=1, blank=False, null=False)
+
+
 class Order(models.Model):
     name = models.CharField(max_length=200, blank=False, null=False)
     description = models.TextField(blank=False, null=False)
@@ -22,7 +26,6 @@ class Order(models.Model):
     required_technologies = models.ManyToManyField(Technology)
     bids_count = models.IntegerField(blank=False, null=False, default=0)
     average_bid = models.IntegerField(blank=False, null=False, default=0)
-    payment_type = models.CharField(max_length=10, blank=False, null=False)
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     min_payment = models.IntegerField(blank=False, null=False, default=0)
     max_payment = models.IntegerField(blank=False, null=False, default=0)
