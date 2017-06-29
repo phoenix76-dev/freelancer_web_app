@@ -3,10 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "/css/bootstrap/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+    <script src="{% static "/js/jquery-3.2.1.js" %}"></script>
+    <script src="{% static "/js/bootstrap/bootstrap.js" %}"></script>
     <title>Freelancer.com</title>
-    <link rel="stylesheet", href="{% static "css/bootstrap/bootstrap.css" %}">
 </head>
 <body>
+    <div class="container">
+        {% include "header.html" %}
 
+        <div class="row">
+
+        </div>
+
+        {% include "footer.html" %}
+    </div>
 </body>
 </html>

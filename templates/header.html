@@ -1,0 +1,42 @@
+{% load static %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="container">
+            <a href="/" class="logo" style="float: left; display: block"><img src="ab.jpg"/></a>
+            {% if user.is_authenticated %}
+                <div class="container-fluid">
+                    <div class="dropdown">
+                        <a data-toggle="dropdown" href="#">Нанять фрилансеров</a>
+                        <ul class="dropdown-menu">
+                            <li><p>Найти фрилансера</p></li>
+                            <li><a href="">Опубликовать проект</a></li>
+                            <li><a href="">Опубликовать конкурс</a></li>
+                            <li><a href="">Опубликовать местную работу</a></li>
+                            <li class="divider" role="separator"></li>
+                            <li><p>Открыть</p></li>
+                            <li><a href="">Витрина</a></li>
+                            <li><a href="">Поиск по каталогу</a></li>
+                            <li><a href="">Сообщество</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a data-toggle="dropdown" href="#">Работать</a>
+                        <ul class="dropdown-menu">
+                            <li><p>Найти работу</p></li>
+                            <li><a href="">Поиск по проектам</a></li>
+                            <li><a href="">Поиск по конкурсам</a></li>
+                            <li><a href="">Поиск по категориям</a></li>
+                        </ul>
+                    </div>
+                    <a href="">Как это работает</a>
+                    <a href="">Войти</a>
+                    <a href="">Регистрация</a>
+                    <a href="">Начать проект</a>
+                </div>
+            {% else %}
+
+            {% endif %}
+        </div>
+    </div>
+</div>
